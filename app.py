@@ -155,9 +155,6 @@ if uploaded_file:
     from sklearn.ensemble import IsolationForest
 
     features = gdf[["num_coords", "bbox_area", "length"]]
-    
-    gdf["rule_result"] = gdf.geometry.apply(lambda g: validate_geometry(g, gdf))
-
     clf = IsolationForest(contamination=0.1, random_state=42)
     clf.fit(features)
 
@@ -206,8 +203,7 @@ if uploaded_file:
             except Exception:
                 pass
         return "Valid"
-
-
+    
 # -----------------------------
 # Page 1 — Upload & Validate
 # -----------------------------
